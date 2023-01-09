@@ -650,5 +650,45 @@ namespace BK7231Flasher
             //setButtonReadLabel(label_stopRead);
             startWorkerThread(doOnlyFlashNew);
         }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.elektroda.com/");
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.elektroda.com/rtvforum/forum390.html?tylko_dzial=1");
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/openshwprojects/obkSimulator/");
+        }
+
+        private void linkLabelSPIFlasher_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/openshwprojects/BK7231_SPI_Flasher/");
+        }
+
+        private void linkLabelForumDevicesSectio_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.elektroda.com/rtvforum/forum507.html");
+        }
+
+        private void linkLabelDevicesDB_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://openbekeniot.github.io/webapp/devicesList.html");
+        }
+
+        private void linkLabelForum_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.elektroda.com/");
+        }
+
+        private void linkLabelOpenBeken_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/openshwprojects/OpenBK7231T_App");
+        }
     }
 }
