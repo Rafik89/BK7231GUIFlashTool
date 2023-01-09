@@ -104,7 +104,17 @@ namespace BK7231Flasher
 
             comboBoxChipType.SelectedIndex = 0;
 
+            comboBoxBaudRate.Items.Add(96000);
+            comboBoxBaudRate.Items.Add(19200);
+            comboBoxBaudRate.Items.Add(38400);
+            comboBoxBaudRate.Items.Add(57600);
+            comboBoxBaudRate.Items.Add(76800);
             comboBoxBaudRate.Items.Add(115200);
+            comboBoxBaudRate.Items.Add(128000);
+            comboBoxBaudRate.Items.Add(230400);
+            comboBoxBaudRate.Items.Add(256000);
+            comboBoxBaudRate.Items.Add(460800);
+            comboBoxBaudRate.Items.Add(576000);
             comboBoxBaudRate.Items.Add(921600);
             comboBoxBaudRate.Items.Add(1500000);
 
