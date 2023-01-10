@@ -104,17 +104,7 @@ namespace BK7231Flasher
 
             comboBoxChipType.SelectedIndex = 0;
 
-            comboBoxBaudRate.Items.Add(96000);
-            comboBoxBaudRate.Items.Add(19200);
-            comboBoxBaudRate.Items.Add(38400);
-            comboBoxBaudRate.Items.Add(57600);
-            comboBoxBaudRate.Items.Add(76800);
             comboBoxBaudRate.Items.Add(115200);
-            comboBoxBaudRate.Items.Add(128000);
-            comboBoxBaudRate.Items.Add(230400);
-            comboBoxBaudRate.Items.Add(256000);
-            comboBoxBaudRate.Items.Add(460800);
-            comboBoxBaudRate.Items.Add(576000);
             comboBoxBaudRate.Items.Add(921600);
             comboBoxBaudRate.Items.Add(1500000);
 
@@ -142,6 +132,23 @@ namespace BK7231Flasher
             bWithinSettingSet = false;
             applySettings();
             refreshAdvancedOptions();
+
+            //foreach(var c in this.Controls)
+            //{
+            //    if(c is LinkLabel)
+            //    {
+            //        LinkLabel ll = c as LinkLabel;
+            //        ll.LinkClicked += genericLinkClicked;
+            //    }
+            //    if(c is TabControl)
+            //    {
+            //        TabControl tc = c as TabControl;
+            //        foreach(TabPage tp in tc.TabPages)
+            //        {
+            //            tp.
+            //        }
+            //    }
+            //}
         }
         MySettings settings;
         void applySettings()
@@ -316,8 +323,8 @@ namespace BK7231Flasher
             int startSector;
             int sectors;
             sectors = 5;
-            startSector = 0x11000;
-            byte[] dat = new byte[sectors * 0x1000];
+            startSector = BK7231Flasher.BOOTLOADER_SIZE;
+            byte[] dat = new byte[sectors * BK7231Flasher.SECTOR_SIZE];
             int baseVal = BK7231Flasher.rand.Next();
             for(int i = 0; i < dat.Length; i++)
             {
@@ -337,7 +344,7 @@ namespace BK7231Flasher
             int startSector;
             int sectors;
             sectors = 2;
-            startSector = 0x11000;
+            startSector = BK7231Flasher.BOOTLOADER_SIZE;
             flasher.doTestReadWrite(startSector, sectors);
             worker = null;
             //setButtonReadLabel(label_startRead);
@@ -377,7 +384,7 @@ namespace BK7231Flasher
             }
             else
             {
-                startSector = 0x11000;
+                startSector = BK7231Flasher.BOOTLOADER_SIZE;
             }
             return startSector;
         }
@@ -385,11 +392,11 @@ namespace BK7231Flasher
         {
 #if false
             int sectors;
-            sectors = (0x200000 - getBackupStartSectorForCurrentPlatform()) / 0x1000;
+            sectors = (BK7231Flasher.FLASH_SIZE - getBackupStartSectorForCurrentPlatform()) / BK7231Flasher.SECTOR_SIZE;
             return sectors;
 #else
             int sectors;
-            sectors = (0x200000) / 0x1000;
+            sectors = (BK7231Flasher.FLASH_SIZE) / BK7231Flasher.SECTOR_SIZE;
             return sectors;
 #endif
         }
@@ -651,44 +658,10 @@ namespace BK7231Flasher
             startWorkerThread(doOnlyFlashNew);
         }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void genericLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.elektroda.com/");
-        }
-
-        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.elektroda.com/rtvforum/forum390.html?tylko_dzial=1");
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/openshwprojects/obkSimulator/");
-        }
-
-        private void linkLabelSPIFlasher_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/openshwprojects/BK7231_SPI_Flasher/");
-        }
-
-        private void linkLabelForumDevicesSectio_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.elektroda.com/rtvforum/forum507.html");
-        }
-
-        private void linkLabelDevicesDB_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://openbekeniot.github.io/webapp/devicesList.html");
-        }
-
-        private void linkLabelForum_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.elektroda.com/");
-        }
-
-        private void linkLabelOpenBeken_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/openshwprojects/OpenBK7231T_App");
+            LinkLabel ll = sender as LinkLabel;
+            System.Diagnostics.Process.Start(ll.Text);
         }
     }
 }
